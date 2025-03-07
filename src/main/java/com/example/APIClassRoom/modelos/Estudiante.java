@@ -1,7 +1,9 @@
 package com.example.APIClassRoom.modelos;
 
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
 
+import java.time.LocalDate;
+@Entity
 public class Estudiante {
     private Integer id;
     private Integer grado;
