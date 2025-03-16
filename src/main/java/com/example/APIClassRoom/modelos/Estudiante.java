@@ -1,14 +1,46 @@
 package com.example.APIClassRoom.modelos;
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 public class Estudiante {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_estudiante")
     private Integer id;
+
+    @Column(nullable = false)
     private Integer grado;
+
+    @Column (name="fecha_nacimiento",nullable = false)
     private LocalDate fechaNacimiento;
+
+    @Column(nullable = false, length = 255)
     private String direccion;
+
+    @OneToOne
+    @JoinColumn(name="fk_usuario", referencedColumnName = "id_usuario")
+    @JsonManagedReference
+    private Usuario usuario;
+
+    //relacion con la tabla inscripcion
+    @OneToMany(mappedBy = "estudiante")
+    @JsonManagedReference
+    private List<Inscripcion> inscripciones;
+
+    //realacion con tabla calificacion
+    @OneToMany(mappedBy = "estudiante")
+    @JsonManagedReference
+    private List<Calificacion> calificaciones;
+
+    //relacion con asistencia
+    @OneToMany(mappedBy = "estudiante")
+    @JsonManagedReference
+    private List<Asistencia> asistencias;
 
     public Estudiante() {
     }

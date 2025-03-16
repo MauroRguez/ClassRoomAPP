@@ -1,12 +1,26 @@
 package com.example.APIClassRoom.modelos;
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 @Entity
 public class Inscripcion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name="id_inscripcion")
     private Integer id;
+
+    @Column(name="fecha_inscripcion")
     private LocalDate fechaInscripcion;
+
+    //dudas mirar el pdf esta resaltado
+
+    //relacionando con la tabla estudiante
+    @ManyToOne
+    @JoinColumn(name="fk_estudiante",referencedColumnName = "id_estudiante")
+    @JsonBackReference
+    private Estudiante estudiante;
 
     public Inscripcion() {
     }
