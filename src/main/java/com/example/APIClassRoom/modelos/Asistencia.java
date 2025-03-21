@@ -24,6 +24,12 @@ public class Asistencia {
     @JsonBackReference
     private Estudiante estudiante;
 
+    //relacion con la tabla asistencia
+    @ManyToOne
+    @JoinColumn(name="fk_curso",referencedColumnName = "id_curso")
+    @JsonBackReference
+    private Curso curso;
+
     public Asistencia() {
     }
 

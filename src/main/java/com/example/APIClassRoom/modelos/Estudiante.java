@@ -22,6 +22,7 @@ public class Estudiante {
     @Column(nullable = false, length = 255)
     private String direccion;
 
+    //realicion con la tabla usuario
     @OneToOne
     @JoinColumn(name="fk_usuario", referencedColumnName = "id_usuario")
     @JsonManagedReference

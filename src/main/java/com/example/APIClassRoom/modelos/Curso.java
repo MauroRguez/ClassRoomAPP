@@ -1,7 +1,10 @@
 package com.example.APIClassRoom.modelos;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="cursos")
@@ -19,6 +22,21 @@ public class Curso {
     @JoinColumn(name="fk_docente",referencedColumnName ="id_docente" )
     @JsonBackReference
     Docente docente;
+
+    //realicion con materia
+    @OneToMany(mappedBy = "curso")
+    @JsonManagedReference
+    private List<Materia> materias;
+
+    //relacion con la tabla asistencia
+    @OneToMany(mappedBy = "curso")
+    @JsonManagedReference
+    private List<Asistencia> asistencias;
+
+    //relacion con la tabla inscripcion
+    @OneToMany(mappedBy = "curso")
+    @JsonManagedReference
+    private List<Inscripcion> inscripciones;
 
     public Curso() {
     }
