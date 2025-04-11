@@ -39,11 +39,9 @@ public class CalificacionServicio {
                 throw new Exception("No hay calificaciones para mostrar");
             }
 
-        }catch (Exception error){
+        }catch  (Exception error){
             throw new Exception(error.getMessage());
         }
-
-
 
 
 
