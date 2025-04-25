@@ -1,10 +1,12 @@
 package com.example.APIClassRoom.servicios;
 
+import com.example.APIClassRoom.ayudas.MensajesAPI;
 import com.example.APIClassRoom.modelos.Asistencia;
 import com.example.APIClassRoom.repositorio.IAsistenciaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +35,7 @@ public class AsitenciaServicio {
                 return this.Repositorio.save(asistenciaBuscado.get());
 
             }else{
-                throw new Exception("No existen datos");
+                throw new Exception(MensajesAPI.ASISTENCIA_NO_ENCONTRADA.getTexto());
             }
 
 
@@ -42,8 +44,47 @@ public class AsitenciaServicio {
 
         }
      }
+    //BUSCAR ID
+    public Asistencia buscarAsistenciaPorId(Integer id) throws Exception{
+        try {
+            Optional<Asistencia> asistenciaBuscado = this.Repositorio.findById(id);
+            if(asistenciaBuscado.isPresent()) {
+                return asistenciaBuscado.get();
+            }else {
+                throw new Exception(MensajesAPI.ASISTENCIA_NO_ENCONTRADA.getTexto());
+            }
 
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
 
+        }
+    }
+
+    // BUSCAR TODOS
+
+    public List<Asistencia> buscarTodasAsistencias() throws Exception{
+        try {
+            return this.Repositorio.findAll();
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
+        }
+    }
+
+    //ELIMINAR
+
+    public boolean eliminarAsistencia(Integer id) throws Exception{
+        try {
+            Optional<Asistencia> asistenciaBuscado = this.Repositorio.findById(id);
+            if(asistenciaBuscado.isPresent()){
+                this.Repositorio.deleteById(id);
+                return true;
+            }else{
+                throw new Exception(MensajesAPI.ASISTENCIA_NO_ENCONTRADA.getTexto());
+            }
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
+        }
+    }
 
 
 }

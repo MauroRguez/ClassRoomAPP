@@ -1,10 +1,12 @@
 package com.example.APIClassRoom.servicios;
 
+import com.example.APIClassRoom.ayudas.MensajesAPI;
 import com.example.APIClassRoom.modelos.Usuario;
 import com.example.APIClassRoom.repositorio.IUsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,33 +19,72 @@ public class UsuarioServicio {
 
     public Usuario guardarUsuario(Usuario datosUsuario) throws Exception {
         try {
-            return this.repositorio.save( datosUsuario);
-        }catch (Exception error){
+            return this.repositorio.save(datosUsuario);
+        } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
-        }
+    }
 
     //MODIFICAR
 
-    public Usuario modificarUsuario (Integer id,Usuario datosUsuario) throws Exception{
+    public Usuario modificarUsuario(Integer id, Usuario datosUsuario) throws Exception {
 
-        Optional<Usuario> usuarioBuscado=this.repositorio.findById(id);
+        Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
 
         try {
-            if(usuarioBuscado.isPresent()){
+            if (usuarioBuscado.isPresent()) {
                 usuarioBuscado.get().setNombre(datosUsuario.getNombre());
-               return this.repositorio.save(usuarioBuscado.get());
+                return this.repositorio.save(usuarioBuscado.get());
 
 
-            }else{
-                throw  new Exception("No se encontro Usuario");
+            } else {
+                throw new Exception(MensajesAPI.USUARIO_NO_ENCONTRADO.getTexto());
             }
-        }catch (Exception error){
-             throw  new Exception(error.getMessage());
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
         }
-
-      }
 
     }
 
+    //BUSCAR ID
+    public Usuario buscarUsuarioPorId(Integer id) throws Exception {
+        try {
+            Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+            if (usuarioBuscado.isPresent()) {
+                return usuarioBuscado.get();
+            } else {
+                throw new Exception(MensajesAPI.USUARIO_NO_ENCONTRADO.getTexto());
+            }
+
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
+
+        }
+    }
+
+    // BUSCAR TODOS
+
+    public List<Usuario> buscarTodosLosUsuarios() throws Exception {
+        try {
+            return this.repositorio.findAll();
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
+        }
+    }
+
+    //ELIMINAR
+    public boolean eliminarUsuario(Integer id) throws Exception {
+        try {
+            Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+            if (usuarioBuscado.isPresent()) {
+                this.repositorio.delete(usuarioBuscado.get());
+                return true;
+            } else {
+                throw new Exception(MensajesAPI.USUARIO_NO_ENCONTRADO.getTexto());
+            }
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
+        }
+    }
+}
 
