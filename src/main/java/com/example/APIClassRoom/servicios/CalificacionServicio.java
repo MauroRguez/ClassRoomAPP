@@ -47,7 +47,7 @@ public class CalificacionServicio {
 
     }
     //BUSCAR ID
-    public Calificacion buscarCalificacion(Integer id) throws Exception{
+    public Calificacion buscarCalificacionPorId(Integer id) throws Exception{
         try {
             Optional<Calificacion> calificacionBuscado = this.repositorio.findById(id);
             if(calificacionBuscado.isPresent()) {

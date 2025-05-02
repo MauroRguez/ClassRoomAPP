@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AsitenciaServicio {
+public class AsistenciaServicio {
 
     @Autowired
     IAsistenciaRepositorio Repositorio;
