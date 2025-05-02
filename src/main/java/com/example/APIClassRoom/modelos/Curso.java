@@ -21,7 +21,7 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name="fk_docente",referencedColumnName ="id_docente" )
     @JsonBackReference
-    Docente docente;
+    private Docente docente;
 
     //realicion con materia
     @OneToMany(mappedBy = "curso")
@@ -61,4 +61,6 @@ public class Curso {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
 }

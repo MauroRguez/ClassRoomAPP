@@ -28,14 +28,10 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
 
     //relacion uno a uno don estudiante
-    @OneToOne(mappedBy = "usuario")
-    @JsonManagedReference
-    private Estudiante estudiante;
 
     //realacion con docente
-    @OneToOne(mappedBy = "usuario")
-    @JsonManagedReference
-    private Docente docente;
+
+
 
     public Usuario() {
     }

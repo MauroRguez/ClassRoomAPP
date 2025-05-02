@@ -21,10 +21,7 @@ public class Docente {
     @JsonManagedReference
     private List<Curso> cursos;
 
-    //relacion con la tabla usuario
-    @OneToOne(mappedBy = "docente")
-    @JsonManagedReference
-    private Usuario usuario;
+
 
 
     public Docente() {

@@ -23,10 +23,7 @@ public class Estudiante {
     private String direccion;
 
     //realicion con la tabla usuario
-    @OneToOne
-    @JoinColumn(name="fk_usuario", referencedColumnName = "id_usuario")
-    @JsonManagedReference
-    private Usuario usuario;
+
 
     //relacion con la tabla inscripcion
     @OneToMany(mappedBy = "estudiante")
