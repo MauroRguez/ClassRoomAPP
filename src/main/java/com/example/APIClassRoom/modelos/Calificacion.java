@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+
+
 @Entity
 public class Calificacion {
     @Id
@@ -20,13 +22,13 @@ public class Calificacion {
     //relacion con la tabla estudiante
     @ManyToOne
     @JoinColumn(name="fk_estudiante",referencedColumnName = "id_estudiante")
-    @JsonBackReference
+    @JsonBackReference(value="estudiante-calificacion")
     private Estudiante estudiante;
 
     //relacion con la tabla materia
     @ManyToOne
     @JoinColumn(name="fk_materia",referencedColumnName = "id_materia")
-    @JsonBackReference
+    @JsonBackReference(value="materia-calificacion")
     private Materia materia;
 
     public Calificacion() {

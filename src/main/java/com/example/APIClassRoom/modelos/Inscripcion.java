@@ -19,13 +19,13 @@ public class Inscripcion {
     //relacionando con la tabla estudiante
     @ManyToOne
     @JoinColumn(name="fk_estudiante",referencedColumnName = "id_estudiante")
-    @JsonBackReference
+    @JsonBackReference(value="estudiante-inscripcion")
     private Estudiante estudiante;
 
     //relacionando con la tabla curso
     @ManyToOne
     @JoinColumn(name="fk_curso",referencedColumnName = "id_curso")
-    @JsonBackReference
+    @JsonBackReference(value="curso-inscripcion")
     private Curso curso;
 
     

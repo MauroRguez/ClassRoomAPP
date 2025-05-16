@@ -1,0 +1,56 @@
+/usuarios
+{
+
+    "nombre":"Mauricio Rodriguez Lopez",
+    "correoElectronico":"mrodriguez1214@hotmail.com",
+    "contrasena":"123456",
+    "telefono":"3108223930",
+    "tipoUsuario":"Docente"
+}
+
+/docentes
+{
+    "especialidad":"Rehabilitador Oral",
+    "usuario":{"id":1}
+
+}
+/estudiantes
+{
+    "grado":3,
+    "fechaNacimiento": "1981-12-14" ,
+    "direccion":"Calle 44 sur no 47-18"    ,
+    "usuario":{"id":1}
+}
+
+/cursos
+{
+"nombre":"Mañana 6am a 10am",
+"docente":{"id":1},
+}
+
+/materias
+{
+"nombre":"Matematicas",
+"cursos":{"id":1}
+}
+
+/calificaciones
+{
+"nota":4.5,
+"fechaEvaluacion":"2024-11-04",
+"estudiante":{"id":1},
+"materia":{"id":1}
+}
+/inscripciones
+{
+"fechaInscripcion":"2024-02-06",
+"curso":{"id":1},
+"estudiante":{"id":1},
+}
+/asistencias
+{
+"fecha":"2024-12-14",
+"estado":"TARDE",
+"curso":{"id":1},
+"estudiante":{"id":1}
+}

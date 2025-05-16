@@ -20,22 +20,22 @@ public class Curso {
     //relacion con la tabla docente
     @ManyToOne
     @JoinColumn(name="fk_docente",referencedColumnName ="id_docente" )
-    @JsonBackReference
+    @JsonBackReference (value="docente-curso")
     private Docente docente;
 
     //realicion con materia
     @OneToMany(mappedBy = "curso")
-    @JsonManagedReference
+    @JsonManagedReference(value="curso-materia")
     private List<Materia> materias;
 
     //relacion con la tabla asistencia
     @OneToMany(mappedBy = "curso")
-    @JsonManagedReference
+    @JsonManagedReference(value="curso-asistencia")
     private List<Asistencia> asistencias;
 
     //relacion con la tabla inscripcion
     @OneToMany(mappedBy = "curso")
-    @JsonManagedReference
+    @JsonManagedReference(value="curso-inscripcion")
     private List<Inscripcion> inscripciones;
 
     public Curso() {

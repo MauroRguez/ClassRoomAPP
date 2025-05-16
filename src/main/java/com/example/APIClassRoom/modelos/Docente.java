@@ -18,10 +18,14 @@ public class Docente {
 
     //realcion con la tabla curso
     @OneToMany(mappedBy = "docente")
-    @JsonManagedReference
+    @JsonManagedReference(value="docente-curso")
     private List<Curso> cursos;
 
-
+    //relacion uno a uno con usuario
+    @OneToOne
+    @JoinColumn(name="fk_usuario",referencedColumnName = "id_usuario")
+    @JsonManagedReference(value="docente-usuario")
+    private Usuario usuario;
 
 
     public Docente() {

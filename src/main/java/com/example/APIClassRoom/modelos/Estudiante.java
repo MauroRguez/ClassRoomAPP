@@ -22,22 +22,25 @@ public class Estudiante {
     @Column(nullable = false, length = 255)
     private String direccion;
 
-    //realicion con la tabla usuario
-
+    //relacion uno a uno con la tabla usuario
+    @OneToOne
+    @JoinColumn(name="fk_usuario", referencedColumnName = "id_usuario")
+    @JsonManagedReference(value="estudiante-usuario")
+    private Usuario usuario;
 
     //relacion con la tabla inscripcion
     @OneToMany(mappedBy = "estudiante")
-    @JsonManagedReference
+    @JsonManagedReference(value="estudiante-inscripcion")
     private List<Inscripcion> inscripciones;
 
     //realacion con tabla calificacion
     @OneToMany(mappedBy = "estudiante")
-    @JsonManagedReference
+    @JsonManagedReference (value="estudiante-calificacion")
     private List<Calificacion> calificaciones;
 
     //relacion con asistencia
     @OneToMany(mappedBy = "estudiante")
-    @JsonManagedReference
+    @JsonManagedReference (value="estudiante-asistencia")
     private List<Asistencia> asistencias;
 
     public Estudiante() {
