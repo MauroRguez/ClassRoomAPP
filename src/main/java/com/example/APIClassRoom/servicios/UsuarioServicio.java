@@ -34,6 +34,10 @@ public class UsuarioServicio {
         try {
             if (usuarioBuscado.isPresent()) {
                 usuarioBuscado.get().setNombre(datosUsuario.getNombre());
+                usuarioBuscado.get().setCorreoElectronico(datosUsuario.getCorreoElectronico());
+                usuarioBuscado.get().setContrasena(datosUsuario.getContrasena());
+                usuarioBuscado.get().setTelefono(datosUsuario.getTelefono());
+
                 return this.repositorio.save(usuarioBuscado.get());
 
 
