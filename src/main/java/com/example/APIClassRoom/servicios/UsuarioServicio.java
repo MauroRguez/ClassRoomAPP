@@ -42,6 +42,7 @@ public class UsuarioServicio {
 
 
             } else {
+
                 throw new Exception(MensajesAPI.USUARIO_NO_ENCONTRADO.getTexto());
             }
         } catch (Exception error) {
